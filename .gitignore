@@ -1,0 +1,24 @@
+# ── Archivos sensibles (NO subir) ──────────────────────────────────────
+conexion.php
+mailer.php
+.env
+
+# ── Scripts de setup (solo uso local) ─────────────────────────────────
+setup-admin.php
+fix-db.php
+
+# ── Fotos subidas por usuarios ─────────────────────────────────────────
+public/img/perfiles/
+
+# ── Sistema / Editor ──────────────────────────────────────────────────
+*.log
+Thumbs.db
+.DS_Store
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# ── Vendor ────────────────────────────────────────────────────────────
+vendor/
+node_modules/
