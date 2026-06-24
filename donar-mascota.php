@@ -271,25 +271,9 @@ if (!$mascota) {
         const infoPagoDiv = document.getElementById('info-pago');
 
         const infoPorMetodo = {
-            'Yape': `
-                <h3><i class="ri-smartphone-fill"></i> Pago por Yape</h3>
-                <p>Escanea el código QR o envía al número registrado:</p>
-                <p style="font-size: 1.2rem;"><strong>📱 965 432 100</strong></p>
-                <p style="font-size: 0.85rem; color: #999;">Titular: ConectaPet</p>
-            `,
-            'Plin': `
-                <h3><i class="ri-smartphone-fill"></i> Pago por Plin</h3>
-                <p>Escanea el código QR o transfiere al número:</p>
-                <p style="font-size: 1.2rem;"><strong>📱 965 432 100</strong></p>
-                <p style="font-size: 0.85rem; color: #999;">Titular: ConectaPet</p>
-            `,
-            'Transferencia': `
-                <h3><i class="ri-bank-fill"></i> Transferencia Bancaria (BCP)</h3>
-                <p><strong>N° Cuenta:</strong> 123-45678901-0-12</p>
-                <p><strong>CCI:</strong> 002 1234 56789012 34567</p>
-                <p><strong>Titular:</strong> ConectaPet Asociación</p>
-                <p style="font-size: 0.8rem; color: #999; margin-top: 0.5rem;">Por favor incluye el nombre de la mascota en la descripción.</p>
-            `
+            'Yape': '<h3>💜 Pago por Yape</h3><img src="qr/qr_yape.jpg" alt="QR Yape" style="width:180px;height:180px;object-fit:contain;display:block;margin:0 auto 0.75rem;border-radius:12px;border:3px solid #7c3aed;"> <p>Transfiere al número: <strong>965 432 100</strong></p><p style="font-size:0.8rem;color:#999;">Titular: ConectaPet</p>',
+            'Plin': '<h3>🔵 Pago por Plin</h3><img src="qr/qr_plin.png" alt="QR Plin" style="width:180px;height:180px;object-fit:contain;display:block;margin:0 auto 0.75rem;border-radius:12px;border:3px solid #2563eb;"> <p>Transfiere al número: <strong>965 432 100</strong></p><p style="font-size:0.8rem;color:#999;">Titular: ConectaPet</p>',
+            'Transferencia': '<h3>🏦 Transferencia BCP</h3><p><strong>Cuenta:</strong> 123-45678901-0-12</p><p><strong>CCI:</strong> 002 1234 56789012 34</p><p><strong>Titular:</strong> ConectaPet Asociación</p>'
         };
 
         metodoSelect.addEventListener('change', function () {

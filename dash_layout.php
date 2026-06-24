@@ -179,6 +179,7 @@ function dash_menu_item($icon, $label, $href, $actual) {
         <?php dash_menu_item('ri-newspaper-fill', 'Noticias', 'dash-noticias.php', $pagina_actual); ?>
         <?php if ($admin_rol === 'superadmin'): ?>
         <?php dash_menu_item('ri-hospital-fill', 'Albergues', 'dash-albergues.php', $pagina_actual); ?>
+        <?php dash_menu_item('ri-team-fill', 'Usuarios', 'dash-usuarios.php', $pagina_actual); ?>
         <?php endif; ?>
 
         <div class="dash-nav-section">Cuenta</div>

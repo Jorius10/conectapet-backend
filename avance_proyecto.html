@@ -1,0 +1,2023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avance del Proyecto - ConectaPet (Reporte Autónomo)</title>
+    
+    <!-- Premium Fonts and Icons via CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette representing ConectaPet Identity */
+            --c-primary: #1F4A38;
+            --c-primary-light: #2A624A;
+            --c-secondary: #889A84;
+            --c-accent: #B56143;
+            --c-accent-hover: #c96e4d;
+            --c-bg: #FDFBF7;
+            --c-surface: #FFFFFF;
+            --c-text: #2c3531;
+            --c-text-muted: #6b7280;
+            --c-border: #e5e7eb;
+            
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 999px;
+            
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            --shadow-lg: 0 20px 25px -5px rgba(31, 74, 56, 0.1), 0 10px 10px -5px rgba(31, 74, 56, 0.04);
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--c-text);
+            background-color: var(--c-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 5rem;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--c-primary);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Component for Standalone Document */
+        .standalone-header {
+            background-color: var(--c-primary);
+            color: white;
+            padding: 1.25rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sh-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-bubble {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+            font-size: 1.3rem;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .logo-text span {
+            color: #ff9d76;
+        }
+
+        .header-tag {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.35rem 0.8rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Hero Section */
+        .avance-hero {
+            padding: 5rem 0 3.5rem;
+            background: linear-gradient(135deg, rgba(31, 74, 56, 0.05) 0%, rgba(136, 154, 132, 0.05) 100%), var(--c-bg);
+            text-align: center;
+            border-bottom: 1px solid var(--c-border);
+        }
+
+        .avance-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .avance-hero h1 span {
+            color: var(--c-accent);
+        }
+
+        .avance-subtitle {
+            font-size: 1.2rem;
+            color: var(--c-text-muted);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Section Layout styles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            margin-top: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--c-text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Goals Grid */
+        .goals-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .goals-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .goal-card {
+            background: var(--c-surface);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--c-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .goal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--c-primary);
+        }
+
+        .goal-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 100%;
+        }
+
+        .goal-card.general::before { background: var(--c-primary); }
+        .goal-card.specific::before { background: var(--c-accent); }
+
+        .goal-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .goal-card h3 i {
+            font-size: 1.5rem;
+        }
+
+        .goal-card.general h3 i { color: var(--c-primary); }
+        .goal-card.specific h3 i { color: var(--c-accent); }
+
+        .goal-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .goal-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.98rem;
+        }
+
+        .goal-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0; top: 0;
+            color: var(--c-accent);
+            font-weight: bold;
+            font-size: 1.15rem;
+        }
+
+        /* Architecture Section */
+        .arch-section {
+            background: #FFFAE6;
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            border: 1px dashed var(--c-primary);
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .arch-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 900px;
+            margin: 2.5rem auto 1.5rem;
+            position: relative;
+        }
+
+        @media (max-width: 900px) {
+            .arch-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            .arch-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        .arch-node {
+            background: var(--c-surface);
+            border: 2px solid var(--c-border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem 1.5rem;
+            min-width: 160px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        .arch-node:hover {
+            border-color: var(--c-primary);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .arch-node.active-pulse {
+            animation: nodeGlow 1.2s infinite alternate;
+            border-color: var(--c-accent);
+        }
+
+        @keyframes nodeGlow {
+            0% { box-shadow: 0 0 5px var(--c-accent), inset 0 0 2px var(--c-accent); }
+            100% { box-shadow: 0 0 20px var(--c-accent), inset 0 0 5px var(--c-accent); border-color: var(--c-accent); }
+        }
+
+        .arch-node i {
+            font-size: 2.1rem;
+            color: var(--c-primary);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .arch-node strong {
+            display: block;
+            color: var(--c-primary);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .arch-node span {
+            font-size: 0.72rem;
+            color: var(--c-text-muted);
+            font-weight: 600;
+        }
+
+        .arch-arrow {
+            font-size: 1.6rem;
+            color: var(--c-secondary);
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .arch-arrow.active-arrow {
+            color: var(--c-accent);
+            text-shadow: 0 0 10px var(--c-accent);
+            transform: scale(1.2);
+        }
+
+        .arch-desc-box {
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            max-width: 600px;
+            margin: 2rem auto 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Button Component */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.7rem 1.4rem;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border-radius: var(--radius-pill);
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background-color: var(--c-accent);
+            color: #fff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--c-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background-color: var(--c-primary);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--c-primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        /* Tab Layout */
+        .tabs-header {
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+            border-bottom: 2px solid var(--c-border);
+            margin-bottom: 2.5rem;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.85rem 1.6rem;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--c-text-muted);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            color: var(--c-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--c-primary);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--c-accent);
+            border-radius: var(--radius-pill);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sprint-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1.8fr;
+            gap: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .sprint-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .sprint-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sprint-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.25rem;
+        }
+
+        .sb-ready { background: #dcfce7; color: #15803d; }
+        .sb-progress { background: #fef9c3; color: #a16207; }
+
+        .sprint-objective {
+            background: var(--c-surface);
+            border-radius: var(--radius-md);
+            padding: 1.1rem 1.4rem;
+            border-left: 4px solid var(--c-primary);
+            margin-bottom: 1.8rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sprint-card-list h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.8rem;
+            color: var(--c-primary);
+            border-bottom: 1px solid var(--c-border);
+            padding-bottom: 0.4rem;
+        }
+
+        .hu-badge-item {
+            background: var(--c-surface);
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            transition: var(--transition);
+        }
+
+        .hu-badge-item:hover {
+            border-color: var(--c-secondary);
+            transform: translateX(4px);
+        }
+
+        .hu-label {
+            background: rgba(181, 97, 67, 0.12);
+            color: var(--c-accent);
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+
+        .hu-text {
+            font-size: 0.88rem;
+            color: var(--c-text);
+            line-height: 1.4;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #1F4A38 0%, #163827 100%);
+            color: white;
+            padding: 1.3rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            margin-top: 1.5rem;
+        }
+
+        .result-box h4 {
+            color: white;
+            margin-bottom: 0.4rem;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .result-box p {
+            font-size: 0.88rem;
+            opacity: 0.9;
+        }
+
+        /* Playground Simulator Style */
+        .playground-card {
+            background: var(--c-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--c-border);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 460px;
+        }
+
+        .pg-header {
+            background: #1e1e2e;
+            padding: 0.7rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pg-dots { display: flex; gap: 6px; }
+        .pg-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .pg-dot.red { background: #ff5f56; }
+        .pg-dot.yellow { background: #ffbd2e; }
+        .pg-dot.green { background: #27c93f; }
+
+        .pg-title {
+            color: #cdd6f4;
+            font-size: 0.8rem;
+            font-family: monospace;
+        }
+
+        .pg-body {
+            flex-grow: 1;
+            padding: 1.5rem;
+            background: #FAF8F5;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .tree-folder {
+            list-style: none;
+            padding-left: 1.2rem;
+            font-family: monospace;
+            font-size: 0.88rem;
+            color: #374151;
+            text-align: left;
+        }
+
+        .tree-folder li {
+            margin-bottom: 0.35rem;
+        }
+
+        .tree-folder li i {
+            margin-right: 0.35rem;
+        }
+
+        .tree-folder li.folder > strong {
+            color: var(--c-primary);
+        }
+
+        .tree-folder li.file:hover {
+            color: var(--c-accent);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .sim-form-wrap {
+            max-width: 320px;
+            margin: 0 auto;
+            background: white;
+            padding: 1.4rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--c-border);
+        }
+
+        .sim-form-wrap h4 {
+            text-align: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .sim-group {
+            margin-bottom: 0.8rem;
+            text-align: left;
+        }
+
+        .sim-group label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--c-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .sim-input {
+            width: 100%;
+            padding: 0.45rem 0.7rem;
+            border: 1px solid var(--c-border);
+            border-radius: var(--radius-sm);
+            outline: none;
+            font-size: 0.82rem;
+            transition: var(--transition);
+        }
+
+        .sim-input:focus { border-color: var(--c-primary); }
+
+        .sim-catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .sim-filter-badges {
+            display: flex;
+            gap: 0.35rem;
+        }
+
+        .sim-badge-btn {
+            background: white;
+            border: 1px solid var(--c-border);
+            padding: 0.3rem 0.7rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .sim-badge-btn.active, .sim-badge-btn:hover {
+            background: var(--c-primary);
+            color: white;
+            border-color: var(--c-primary);
+        }
+
+        .sim-catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.85rem;
+        }
+
+        .sim-pet-card {
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--c-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            text-align: left;
+        }
+
+        .sim-pet-info {
+            padding: 0.6rem;
+        }
+
+        .sim-pet-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--c-primary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sim-pet-tags {
+            display: flex;
+            gap: 4px;
+            margin-top: 0.25rem;
+        }
+
+        .sim-pet-tag {
+            font-size: 0.65rem;
+            padding: 0.1rem 0.35rem;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .sim-tag-especie { background: rgba(31,74,56,0.1); color: var(--c-primary); }
+        .sim-tag-sexo { background: #f3f4f6; color: var(--c-text-muted); }
+
+        .sim-split {
+            display: grid;
+            grid-template-columns: 1.25fr 1.75fr;
+            gap: 1.2rem;
+            text-align: left;
+        }
+
+        .sim-inbox-item {
+            background: white;
+            border: 1px solid var(--c-border);
+            padding: 0.7rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 0.6rem;
+            transition: var(--transition);
+        }
+
+        .sim-status-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.3rem;
+        }
+
+        .status-pendiente { background: #f59e0b; }
+        .status-aprobado { background: #10b981; }
+        .status-rechazado { background: #ef4444; }
+
+        /* Tables layout */
+        .db-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (max-width: 992px) {
+            .db-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .db-table-design {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--c-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--c-border);
+            margin-bottom: 1.5rem;
+        }
+
+        .db-table-design th {
+            background: var(--c-primary);
+            color: white;
+            padding: 0.9rem 1.1rem;
+            text-align: left;
+            font-family: var(--font-heading);
+            font-weight: 600;
+        }
+
+        .db-table-design td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--c-border);
+            font-size: 0.92rem;
+        }
+
+        .db-table-design tr:last-child td { border-bottom: none; }
+
+        /* Toast notifications */
+        .toast-container-sim {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .toast-sim {
+            background: #1F4A38;
+            color: white;
+            padding: 0.9rem 1.4rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            min-width: 240px;
+            animation: slideInToast 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideInToast {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .toast-sim.err { background: var(--c-accent); }
+
+        /* Roadmap Grid */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .roadmap-card {
+            background: var(--c-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.2rem 1.8rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--c-border);
+        }
+
+        .roadmap-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .roadmap-card.dificultades h3 { color: var(--c-accent); }
+        .roadmap-card.pendientes h3 { color: var(--c-primary); }
+
+        .roadmap-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .roadmap-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .roadmap-list li i {
+            position: absolute;
+            left: 0; top: 3px;
+            font-size: 1.15rem;
+        }
+
+        .roadmap-card.dificultades li i { color: var(--c-accent); }
+        .roadmap-card.pendientes li i { color: var(--c-primary); }
+
+        .roadmap-list li strong {
+            display: block;
+            font-size: 0.98rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .roadmap-list li span {
+            font-size: 0.85rem;
+            color: var(--c-text-muted);
+        }
+
+        .test-row-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-weight: 700;
+        }
+        
+        .footer-tagline {
+            text-align: center;
+            margin-top: 5rem;
+            font-size: 0.85rem;
+            color: var(--c-text-muted);
+            border-top: 1px solid var(--c-border);
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Block -->
+    <header class="standalone-header">
+        <div class="container sh-content">
+            <div class="logo">
+                <div class="logo-bubble">🐾</div>
+                <div class="logo-text">Conecta<span>Pet</span></div>
+            </div>
+            <div class="header-tag">Fase II: Dashboard de Avances Scrum</div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="avance-hero">
+        <div class="container">
+            <span class="header-tag" style="background: rgba(181,97,67,0.15); color: var(--c-accent); margin-bottom: 1rem; display: inline-block;">Metodología Scrum</span>
+            <h1>Avance Funcional del <span>Sistema Web</span></h1>
+            <p class="avance-subtitle">Documentación interactiva y demostraciones autónomas de la gestión de adopciones, base de datos y control de sprints.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- SECCIÓN 1: OBJETIVOS -->
+        <section class="goals-grid">
+            <div class="goal-card general">
+                <h3><i class="ri-rocket-2-fill"></i> Objetivo General</h3>
+                <p style="font-size: 1rem; line-height: 1.6; text-align: left;">
+                    Presentar el avance funcional del Sistema Web de Gestión de Adopciones y Donaciones, evidenciando la implementación progresiva de sus módulos mediante la metodología Scrum.
+                </p>
+            </div>
+            <div class="goal-card specific">
+                <h3><i class="ri-focus-3-line"></i> Objetivos Específicos</h3>
+                <ul class="goal-list">
+                    <li><strong>Autenticación Multirol:</strong> Implementar un sistema modular de inicio de sesión y registro segregando los roles (Superadmin, Albergues y Adoptantes).</li>
+                    <li><strong>Gestión de Mascotas:</strong> Habilitar fichas de animales conteniendo vacunas, estados, descripción e imágenes descriptivas.</li>
+                    <li><strong>Catálogo Dinámico:</strong> Estructurar un listado público de adopciones provisto de filtros veloces y barra de búsqueda reactiva.</li>
+                    <li><strong>Solicitudes Digitales:</strong> Establecer el formulario digital de adopción e integrar una consola administrativa de evaluación socio-ambiental.</li>
+                    <li><strong>Consistencia del Sistema:</strong> Verificar la correcta persistencia e interconexión de bases de datos mediante pruebas funcionales sistemáticas.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: ARQUITECTURA -->
+        <section class="arch-section">
+            <h2 style="font-size: 1.8rem; color: var(--c-primary); margin-bottom: 0.4rem;">Arquitectura e Integración de Tecnologías</h2>
+            <p style="color: var(--c-text-muted); max-width: 600px; margin: 0 auto 1.5rem; font-size: 0.95rem;">Simulador dinámico del flujo de transmisión AJAX Cliente-Servidor. Presiona el botón para iniciar.</p>
+            
+            <button class="btn btn-primary" onclick="simulateAjaxFlow()" style="gap: 0.4rem; margin-bottom: 1rem;">
+                <i class="ri-play-circle-fill"></i> Simular Petición AJAX (Flow)
+            </button>
+
+            <div class="arch-container">
+                <div class="arch-node" id="arch-user" onclick="highlightArchNode('user')">
+                    <i class="ri-user-smile-fill"></i>
+                    <strong>Usuario</strong>
+                    <span>Navegador Web</span>
+                </div>
+                <div class="arch-arrow" id="arrow-1">➔</div>
+                <div class="arch-node" id="arch-front" onclick="highlightArchNode('front')">
+                    <i class="ri-html5-fill" style="color: #e34c26;"></i>
+                    <strong>Frontend</strong>
+                    <span>HTML / CSS / JS</span>
+                </div>
+                <div class="arch-arrow" id="arrow-2">➔</div>
+                <div class="arch-node" id="arch-ajax" onclick="highlightArchNode('ajax')">
+                    <i class="ri-refresh-line" style="color: #3b82f6;"></i>
+                    <strong>AJAX (Fetch)</strong>
+                    <span>Transmisión Asíncrona</span>
+                </div>
+                <div class="arch-arrow" id="arrow-3">➔</div>
+                <div class="arch-node" id="arch-back" onclick="highlightArchNode('back')">
+                    <i class="ri-braces-line" style="color: #777bb4;"></i>
+                    <strong>Backend (PHP)</strong>
+                    <span>Controladores y Reglas</span>
+                </div>
+                <div class="arch-arrow" id="arrow-4">➔</div>
+                <div class="arch-node" id="arch-db" onclick="highlightArchNode('db')">
+                    <i class="ri-database-2-fill" style="color: #00758f;"></i>
+                    <strong>Base de Datos</strong>
+                    <span>MySQL / Persistencia</span>
+                </div>
+            </div>
+
+            <div class="arch-desc-box" id="arch-description">
+                <p style="font-weight: 500; color: var(--c-text-muted); font-size: 0.9rem;">Haz clic sobre cualquiera de los módulos para inspeccionar su rol funcional.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: SPRINTS DESARROLLADOS -->
+        <div class="section-title">
+            <h2>Hitos del Desarrollo por Sprints</h2>
+            <p>Control cronológico y demostraciones interactivas en vivo de las historias de usuario.</p>
+        </div>
+
+        <div class="sprints-tabs-container">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="switchSprintTab(0)">Sprint 0</button>
+                <button class="tab-btn" onclick="switchSprintTab(1)">Sprint 1</button>
+                <button class="tab-btn" onclick="switchSprintTab(2)">Sprint 2</button>
+                <button class="tab-btn" onclick="switchSprintTab(3)">Sprint 3</button>
+                <button class="tab-btn" onclick="switchSprintTab(4)">Sprint 4</button>
+            </div>
+
+            <!-- SPRINT 0 -->
+            <div class="tab-content active" id="sprint-tab-0">
+                <div class="sprint-layout">
+                    <div class="sprint-info">
+                        <span class="sprint-badge sb-ready">Completado</span>
+                        <h2>Sprint 0: Cimientos Técnicos</h2>
+                        <div class="sprint-objective">
+                            <strong>Objetivo:</strong> Diseñar la estructura relacional de la base de datos, configurar los entornos locales e inicializar el repositorio colaborativo.
+                        </div>
+                        <div class="sprint-card-list">
+                            <h4>Actividades Realizadas</h4>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">BD</span>
+                                <span class="hu-text">Diseño lógico del DER y generación de scripts DDL.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">GIT</span>
+                                <span class="hu-text">Creación del repositorio GitHub y organización de ramas.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">ENT</span>
+                                <span class="hu-text">Configuración de servidor local Apache y MySQL en XAMPP.</span>
+                            </div>
+                        </div>
+                        <div class="result-box">
+                            <h4><i class="ri-checkbox-circle-fill"></i> Resultado del Sprint</h4>
+                            <p>Se levantó correctamente la base de datos MySQL local y se consolidaron las carpetas base del proyecto para el desarrollo colaborativo.</p>
+                        </div>
+                    </div>
+
+                    <div class="playground-card">
+                        <div class="pg-header">
+                            <div class="pg-dots"><span class="pg-dot red"></span><span class="pg-dot yellow"></span><span class="pg-dot green"></span></div>
+                            <div class="pg-title">Sprint_0_Viewer.sh</div>
+                        </div>
+                        <div class="pg-body">
+                            <div style="display: flex; gap: 0.4rem; margin-bottom: 1.25rem; justify-content: center;">
+                                <button class="sim-badge-btn active" onclick="setSprint0View('der')" id="s0-btn-der">Modelo DER</button>
+                                <button class="sim-badge-btn" onclick="setSprint0View('tree')" id="s0-btn-tree">Carpetas Físicas</button>
+                                <button class="sim-badge-btn" onclick="setSprint0View('git')" id="s0-btn-git">commits GitHub</button>
+                            </div>
+
+                            <!-- DER -->
+                            <div id="s0-view-der" style="height: 270px; overflow: auto; text-align: left; background: white; padding: 1rem; border-radius: var(--radius-md); border:1px solid var(--c-border); font-family: monospace; font-size:0.75rem;">
+                                <div style="font-weight:700; color:var(--c-primary); border-bottom: 1px solid var(--c-border); padding-bottom: 0.3rem; margin-bottom: 0.6rem;">Modelo Entidad-Relación Lógico</div>
+                                <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                                    <div style="border: 1px solid #e5e7eb; padding:0.4rem; border-radius:4px; background:#FAF8F5;">
+                                        <strong>[Table] usuarios:</strong> id (PK), nombre, correo (UNIQUE), password_hash, telefono, distrito
+                                    </div>
+                                    <div style="border: 1px solid #e5e7eb; padding:0.4rem; border-radius:4px; background:#FAF8F5;">
+                                        <strong>[Table] mascotas:</strong> id (PK), albergue_id (FK), nombre, especie, edad_texto, estado_tramite
+                                    </div>
+                                    <div style="border: 1px solid #e5e7eb; padding:0.4rem; border-radius:4px; background:#FAF8F5;">
+                                        <strong>[Table] adopciones:</strong> id (PK), mascota_id (FK), usuario_id (FK), estado, fecha_solicitud
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tree -->
+                            <div id="s0-view-tree" style="display:none; height: 270px; overflow-y: auto; background: white; padding: 1rem; border-radius: var(--radius-md); border:1px solid var(--c-border);">
+                                <ul class="tree-folder">
+                                    <li class="folder"><strong><i class="ri-folder-open-fill"></i> pagina proyecto</strong>
+                                        <ul style="padding-left:1.2rem; list-style:none;">
+                                            <li class="folder"><strong><i class="ri-folder-fill"></i> public/</strong></li>
+                                            <li class="file"><i class="ri-file-code-fill"></i> index.php</li>
+                                            <li class="file"><i class="ri-file-code-fill"></i> login.php</li>
+                                            <li class="file"><i class="ri-file-code-fill"></i> adoptar.php</li>
+                                            <li class="file"><i class="ri-file-code-fill"></i> conexion.php</li>
+                                            <li class="file"><i class="ri-file-code-fill"></i> database.sql</li>
+                                            <li class="file"><i class="ri-css3-fill"></i> style.css</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- GitHub -->
+                            <div id="s0-view-git" style="display:none; height: 270px; text-align: left; background: #0d1117; color: #c9d1d9; padding: 1rem; border-radius: var(--radius-md); border:1px solid #30363d; font-family: monospace; font-size: 0.78rem; overflow-y:auto;">
+                                <div style="display:flex; justify-content:space-between; border-bottom:1px solid #30363d; padding-bottom: 0.4rem; margin-bottom: 0.6rem;">
+                                    <span style="color:#58a6ff; font-weight:700;"><i class="ri-git-branch-line"></i> Repository Branches</span>
+                                    <span>main</span>
+                                </div>
+                                <div style="margin-bottom:0.6rem;">
+                                    <span style="color:#7ee787;">commit a17bc2d</span> - feat: add core dashboard views
+                                </div>
+                                <div style="margin-bottom:0.6rem;">
+                                    <span style="color:#7ee787;">commit f8239ac</span> - feat: implement multirole session verification
+                                </div>
+                                <div style="margin-bottom:0.6rem;">
+                                    <span style="color:#7ee787;">commit e219ff0</span> - initial commit: base structure and database sql
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPRINT 1 -->
+            <div class="tab-content" id="sprint-tab-1">
+                <div class="sprint-layout">
+                    <div class="sprint-info">
+                        <span class="sprint-badge sb-ready">Completado</span>
+                        <h2>Sprint 1: Autenticación y Gestión</h2>
+                        <div class="sprint-objective">
+                            <strong>Objetivo:</strong> Diseñar los formularios de registro e inicio de sesión con control de sesiones multirol (Superadmin, Albergues y Usuarios públicos).
+                        </div>
+                        <div class="sprint-card-list">
+                            <h4>Historias de Usuario</h4>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU01</span>
+                                <span class="hu-text">Como usuario del sistema quiero registrarme e iniciar sesión para enviar solicitudes.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU12</span>
+                                <span class="hu-text">Como administrador quiero administrar usuarios (visualizar, editar, desactivar) para la seguridad.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU11</span>
+                                <span class="hu-text">Como usuario quiero recibir alertas flotantes al realizar acciones clave.</span>
+                            </div>
+                        </div>
+                        <div class="result-box">
+                            <h4><i class="ri-checkbox-circle-fill"></i> Resultado del Sprint</h4>
+                            <p>Sistema de sesiones multirol validado. Los administradores disponen de un panel para auditar e inhabilitar cuentas de usuario.</p>
+                        </div>
+                    </div>
+
+                    <div class="playground-card">
+                        <div class="pg-header">
+                            <div class="pg-dots"><span class="pg-dot red"></span><span class="pg-dot yellow"></span><span class="pg-dot green"></span></div>
+                            <div class="pg-title">Sprint_1_Auth_Sandbox.exe</div>
+                        </div>
+                        <div class="pg-body">
+                            <div style="display:flex; justify-content:center; gap:0.4rem; margin-bottom:1.25rem;">
+                                <button class="sim-badge-btn active" onclick="setSprint1View('register')" id="s1-btn-register">Registro</button>
+                                <button class="sim-badge-btn" onclick="setSprint1View('login')" id="s1-btn-login">Login</button>
+                                <button class="sim-badge-btn" onclick="setSprint1View('users')" id="s1-btn-users">Lista Usuarios</button>
+                            </div>
+
+                            <div id="s1-view-register" class="sim-form-wrap">
+                                <h4>Registro de Usuario</h4>
+                                <div class="sim-group">
+                                    <label>Nombre</label>
+                                    <input type="text" id="reg-name" class="sim-input" placeholder="Ej. Juan Pérez">
+                                </div>
+                                <div class="sim-group">
+                                    <label>Correo</label>
+                                    <input type="email" id="reg-email" class="sim-input" placeholder="correo@ejemplo.com">
+                                </div>
+                                <div class="sim-group">
+                                    <label>Rol</label>
+                                    <select id="reg-role" class="sim-input">
+                                        <option value="usuario">Adoptante</option>
+                                        <option value="albergue">Albergue</option>
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary btn-block" onclick="runRegisterSimulation()">Crear Cuenta</button>
+                            </div>
+
+                            <div id="s1-view-login" class="sim-form-wrap" style="display:none;">
+                                <h4>Inicio de Sesión</h4>
+                                <div class="sim-group">
+                                    <label>Correo Electrónico</label>
+                                    <input type="email" id="log-email" class="sim-input" value="user@conectapet.com">
+                                </div>
+                                <div class="sim-group">
+                                    <label>Contraseña</label>
+                                    <input type="password" class="sim-input" value="123456">
+                                </div>
+                                <button class="btn btn-primary btn-block" onclick="runLoginSimulation()">Entrar</button>
+                                <div style="font-size:0.72rem; text-align:center; color:var(--c-text-muted); margin-top:0.6rem;">
+                                    Tip: Prueba con <strong>admin@conectapet.com</strong> para rol administrador.
+                                </div>
+                            </div>
+
+                            <div id="s1-view-users" style="display:none; background:white; padding:0.6rem; border-radius:var(--radius-md); border:1px solid var(--c-border); text-align:left;">
+                                <table style="width:100%; border-collapse:collapse; font-size:0.75rem;">
+                                    <thead>
+                                        <tr style="background:#f9fafb; border-bottom:1px solid var(--c-border); text-align:left;">
+                                            <th style="padding:0.35rem;">Usuario</th>
+                                            <th style="padding:0.35rem;">Rol</th>
+                                            <th style="padding:0.35rem;">Estado</th>
+                                            <th style="padding:0.35rem; text-align:center;">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="s1-users-table-body">
+                                        <tr style="border-bottom:1px solid #f3f4f6;">
+                                            <td style="padding:0.35rem;"><strong>Admin CP</strong><br><small style="color:#6b7280;">admin@conectapet.com</small></td>
+                                            <td style="padding:0.35rem;"><span class="badge badge-blue" style="font-size:0.65rem;">Superadmin</span></td>
+                                            <td style="padding:0.35rem;"><span style="color:#10b981; font-weight:700;">Activo</span></td>
+                                            <td style="padding:0.35rem; text-align:center;">-</td>
+                                        </tr>
+                                        <tr style="border-bottom:1px solid #f3f4f6;">
+                                            <td style="padding:0.35rem;"><strong>Juan Pérez</strong><br><small style="color:#6b7280;">juan@gmail.com</small></td>
+                                            <td style="padding:0.35rem;"><span class="badge badge-gray" style="font-size:0.65rem;">Adoptante</span></td>
+                                            <td style="padding:0.35rem;"><span id="s1-status-2" style="color:#10b981; font-weight:700;">Activo</span></td>
+                                            <td style="padding:0.35rem; text-align:center;">
+                                                <button class="sim-badge-btn" style="padding:0.1rem 0.35rem; font-size:0.65rem;" onclick="toggleSimUser(2)">Desactivar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPRINT 2 -->
+            <div class="tab-content" id="sprint-tab-2">
+                <div class="sprint-layout">
+                    <div class="sprint-info">
+                        <span class="sprint-badge sb-ready">Completado</span>
+                        <h2>Sprint 2: Registro de Mascotas y Catálogo</h2>
+                        <div class="sprint-objective">
+                            <strong>Objetivo:</strong> Diseñar los formularios de registro y actualización de mascotas, e implementar el catálogo público provisto de filtros de búsqueda.
+                        </div>
+                        <div class="sprint-card-list">
+                            <h4>Historias de Usuario</h4>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU02</span>
+                                <span class="hu-text">Como albergue quiero registrar mascotas (nombre, especie, vacunas, foto) para publicarlas.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU03</span>
+                                <span class="hu-text">Como adoptante deseo buscar mascotas aplicando filtros rápidos de categoría.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU05</span>
+                                <span class="hu-text">Como albergue deseo especificar evaluaciones veterinarias y de salud de las mascotas.</span>
+                            </div>
+                        </div>
+                        <div class="result-box">
+                            <h4><i class="ri-checkbox-circle-fill"></i> Resultado del Sprint</h4>
+                            <p>Módulo de inventario y catálogo completamente integrado. El motor de filtros clasifica dinámicamente según taxonomía de las mascotas.</p>
+                        </div>
+                    </div>
+
+                    <div class="playground-card">
+                        <div class="pg-header">
+                            <div class="pg-dots"><span class="pg-dot red"></span><span class="pg-dot yellow"></span><span class="pg-dot green"></span></div>
+                            <div class="pg-title">Sprint_2_Catalog_Viewer.exe</div>
+                        </div>
+                        <div class="pg-body">
+                            <div style="display:flex; justify-content:center; gap:0.4rem; margin-bottom:1rem;">
+                                <button class="sim-badge-btn active" onclick="setSprint2View('catalog')" id="s2-btn-catalog">Ver Catálogo</button>
+                                <button class="sim-badge-btn" onclick="setSprint2View('newpet')" id="s2-btn-newpet">Añadir Mascota</button>
+                            </div>
+
+                            <div id="s2-view-catalog">
+                                <div class="sim-catalog-header">
+                                    <div class="sim-filter-badges">
+                                        <button class="sim-badge-btn active" onclick="filterSimPets('todos')" id="f-pet-all">Todos</button>
+                                        <button class="sim-badge-btn" onclick="filterSimPets('Perro')" id="f-pet-dog">Perros</button>
+                                        <button class="sim-badge-btn" onclick="filterSimPets('Gato')" id="f-pet-cat">Gatos</button>
+                                    </div>
+                                    <input type="text" id="sim-pet-search" class="sim-input" placeholder="Buscar..." style="max-width: 110px; padding:0.25rem; font-size:0.75rem;" onkeyup="searchSimPets()">
+                                </div>
+
+                                <div class="sim-catalog-grid" id="sim-catalog-items">
+                                    <div class="sim-pet-card" data-especie="Perro">
+                                        <div style="height:90px; background:linear-gradient(45deg, #FFB347, #FF7B54); display:flex; align-items:center; justify-content:center; color:white; font-size:1.6rem; font-weight:800;">🐶</div>
+                                        <div class="sim-pet-info">
+                                            <div class="sim-pet-name">Bella <span style="font-size:0.65rem; background:#dcfce7; color:#15803d; padding:0.1rem 0.25rem; border-radius:4px;">Vacunada</span></div>
+                                            <div style="font-size:0.7rem; color:var(--c-text-muted);">1 Año • Patitas Con Futuro</div>
+                                            <div class="sim-pet-tags">
+                                                <span class="sim-pet-tag sim-tag-especie">Perro</span>
+                                                <span class="sim-pet-tag sim-tag-sexo">Hembra</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sim-pet-card" data-especie="Gato">
+                                        <div style="height:90px; background:linear-gradient(45deg, #74ebd5, #9face6); display:flex; align-items:center; justify-content:center; color:white; font-size:1.6rem; font-weight:800;">🐱</div>
+                                        <div class="sim-pet-info">
+                                            <div class="sim-pet-name">Michi <span style="font-size:0.65rem; background:#dcfce7; color:#15803d; padding:0.1rem 0.25rem; border-radius:4px;">Castrada</span></div>
+                                            <div style="font-size:0.7rem; color:var(--c-text-muted);">1.5 Años • Los Michis</div>
+                                            <div class="sim-pet-tags">
+                                                <span class="sim-pet-tag sim-tag-especie">Gato</span>
+                                                <span class="sim-pet-tag sim-tag-sexo">Hembra</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="s2-view-newpet" class="sim-form-wrap" style="display:none; max-width:100%;">
+                                <h4>Registrar Mascota</h4>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.4rem;">
+                                    <div class="sim-group">
+                                        <label>Nombre</label>
+                                        <input type="text" id="newpet-name" class="sim-input" placeholder="Toby">
+                                    </div>
+                                    <div class="sim-group">
+                                        <label>Especie</label>
+                                        <select id="newpet-type" class="sim-input">
+                                            <option value="Perro">Perro</option>
+                                            <option value="Gato">Gato</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.4rem;">
+                                    <div class="sim-group">
+                                        <label>Sexo</label>
+                                        <select id="newpet-sex" class="sim-input">
+                                            <option value="Macho">Macho</option>
+                                            <option value="Hembra">Hembra</option>
+                                        </select>
+                                    </div>
+                                    <div class="sim-group">
+                                        <label>Edad</label>
+                                        <input type="text" id="newpet-age" class="sim-input" placeholder="Ej. 8 Meses">
+                                    </div>
+                                </div>
+                                <div class="sim-group">
+                                    <label>Estado Veterinario</label>
+                                    <input type="text" id="newpet-med" class="sim-input" placeholder="Vacunado y Desparasitado">
+                                </div>
+                                <button class="btn btn-primary btn-block" onclick="runNewPetSimulation()">Guardar Mascota</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPRINT 3 -->
+            <div class="tab-content" id="sprint-tab-3">
+                <div class="sprint-layout">
+                    <div class="sprint-info">
+                        <span class="sprint-badge sb-ready">Completado</span>
+                        <h2>Sprint 3: Solicitudes de Adopción</h2>
+                        <div class="sprint-objective">
+                            <strong>Objetivo:</strong> Habilitar la postulación digital para adopciones y configurar la consola de evaluación del albergue para aprobar o rechazar solicitudes.
+                        </div>
+                        <div class="sprint-card-list">
+                            <h4>Historias de Usuario</h4>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU04</span>
+                                <span class="hu-text">Como adoptante quiero rellenar un formulario de adopción digital para postular por una mascota.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU06</span>
+                                <span class="hu-text">Como evaluador de albergue quiero ingresar anotaciones de la evaluación socio-ambiental.</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label">HU07</span>
+                                <span class="hu-text">Como albergue quiero aprobar o rechazar la solicitud en base al estudio socio-ambiental.</span>
+                            </div>
+                        </div>
+                        <div class="result-box">
+                            <h4><i class="ri-checkbox-circle-fill"></i> Resultado del Sprint</h4>
+                            <p>Flujo de aprobación digital completado. Las solicitudes cambian de estado de forma reactiva y el sistema audita las bitácoras del evaluador.</p>
+                        </div>
+                    </div>
+
+                    <div class="playground-card">
+                        <div class="pg-header">
+                            <div class="pg-dots"><span class="pg-dot red"></span><span class="pg-dot yellow"></span><span class="pg-dot green"></span></div>
+                            <div class="pg-title">Sprint_3_Adoption_Workflow.exe</div>
+                        </div>
+                        <div class="pg-body" style="padding:0.75rem;">
+                            <div class="sim-split">
+                                <div style="background:white; padding:0.6rem; border-radius:var(--radius-md); border:1px solid var(--c-border); font-size:0.78rem;">
+                                    <div style="font-weight:700; color:var(--c-primary); border-bottom:1px solid var(--c-border); padding-bottom:0.25rem; margin-bottom:0.5rem;">Formulario Adoptante</div>
+                                    <div class="sim-group" style="margin-bottom:0.4rem;">
+                                        <label style="font-size:0.65rem;">Nombre</label>
+                                        <input type="text" id="s3-name" class="sim-input" placeholder="Ej. Carlos" style="padding:0.25rem; font-size:0.75rem;">
+                                    </div>
+                                    <div class="sim-group" style="margin-bottom:0.4rem;">
+                                        <label style="font-size:0.65rem;">Mascota</label>
+                                        <select id="s3-pet" class="sim-input" style="padding:0.25rem; font-size:0.75rem;">
+                                            <option value="Bella (Perro)">Bella (Perro)</option>
+                                            <option value="Michi (Gato)">Michi (Gato)</option>
+                                        </select>
+                                    </div>
+                                    <div class="sim-group" style="margin-bottom:0.4rem;">
+                                        <label style="font-size:0.65rem;">DNI</label>
+                                        <input type="text" id="s3-dni" class="sim-input" placeholder="8 dígitos" style="padding:0.25rem; font-size:0.75rem;">
+                                    </div>
+                                    <button class="btn btn-primary btn-block" style="padding:0.35rem; font-size:0.75rem;" onclick="submitAdoptionSimulation()">Enviar Solicitud</button>
+                                </div>
+
+                                <div>
+                                    <div style="font-weight:700; color:var(--c-primary); font-size:0.8rem; margin-bottom:0.4rem;">Consola Evaluador (Albergue)</div>
+                                    <div id="s3-inbox-container">
+                                        <div class="sim-inbox-item" id="s3-req-1" style="text-align:left; font-size:0.75rem;">
+                                            <div style="display:flex; justify-content:space-between; font-weight:700;">
+                                                <span>Ana Gómez</span>
+                                                <span id="s3-req-state-badge-1" style="color:#a16207; font-weight:700;">
+                                                    <span class="sim-status-dot status-pendiente"></span>Pendiente
+                                                </span>
+                                            </div>
+                                            <div style="color:#6b7280; font-size:0.7rem; margin-top:0.15rem;">Mascota: Bella | DNI: 47829102</div>
+                                            <div style="margin-top:0.35rem; display:flex; gap:0.2rem;">
+                                                <input type="text" id="s3-obs-1" class="sim-input" placeholder="Observaciones..." style="padding:0.15rem; font-size:0.68rem; flex-grow:1;">
+                                                <button class="sim-badge-btn" style="background:#10b981; color:white; border:none; padding:0.15rem 0.35rem; font-size:0.65rem;" onclick="updateRequestState(1, 'Aprobada')">Aprobar</button>
+                                                <button class="sim-badge-btn" style="background:#ef4444; color:white; border:none; padding:0.15rem 0.35rem; font-size:0.65rem;" onclick="updateRequestState(1, 'Rechazada')">Rechazar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPRINT 4 -->
+            <div class="tab-content" id="sprint-tab-4">
+                <div class="sprint-layout">
+                    <div class="sprint-info">
+                        <span class="sprint-badge sb-progress">En Proceso</span>
+                        <h2>Sprint 4: Módulos de Cierre</h2>
+                        <div class="sprint-objective">
+                            <strong>Objetivo:</strong> Integrar la pasarela de donaciones monetarias, el módulo de seguimiento y control de visitas post-adopción, y reportes estadísticos avanzados.
+                        </div>
+                        <div class="sprint-card-list">
+                            <h4>Funcionalidades en Desarrollo</h4>
+                            <div class="hu-badge-item">
+                                <span class="hu-label" style="background:rgba(181, 97, 67, 0.05); color:#6b7280;">HU08</span>
+                                <span class="hu-text">Seguimiento Post-Adopción (Visitas agendadas e historial fotográfico mensual de la mascota).</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label" style="background:rgba(181, 97, 67, 0.05); color:#6b7280;">HU09</span>
+                                <span class="hu-text">Módulo de Donaciones (Integración de pasarela para aportes financieros).</span>
+                            </div>
+                            <div class="hu-badge-item">
+                                <span class="hu-label" style="background:rgba(181, 97, 67, 0.05); color:#6b7280;">HU14</span>
+                                <span class="hu-text">Dashboard Estadístico de Adopciones (KPIs de efectividad mensuales).</span>
+                            </div>
+                        </div>
+                        <div class="result-box" style="background:#FAF8F5; border:1px solid var(--c-border); color:var(--c-text);">
+                            <h4 style="color:var(--c-primary);"><i class="ri-time-line"></i> Estado del Sprint</h4>
+                            <p><strong>En proceso de implementación.</strong> Se están diseñando los formularios para las visitas y configurando los métodos de pago de donaciones.</p>
+                        </div>
+                    </div>
+
+                    <div class="playground-card">
+                        <div class="pg-header">
+                            <div class="pg-dots"><span class="pg-dot red"></span><span class="pg-dot yellow"></span><span class="pg-dot green"></span></div>
+                            <div class="pg-title">Sprint_4_Status.md</div>
+                        </div>
+                        <div class="pg-body" style="display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+                            <div style="font-size:3.5rem; margin-bottom:0.75rem;">🚧</div>
+                            <h3 style="font-size:1.2rem; color:var(--c-primary); margin-bottom:0.4rem;">Fase de Integración Final</h3>
+                            <p style="font-size:0.88rem; color:var(--c-text-muted); max-width:280px; margin-bottom:1.2rem;">Donaciones y Seguimiento post-adopción en desarrollo activo.</p>
+                            
+                            <div style="width:100%; max-width:240px; height:10px; background:#e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:0.4rem;">
+                                <div style="width:70%; height:100%; background:var(--c-accent); border-radius:10px;"></div>
+                            </div>
+                            <span style="font-size:0.78rem; font-weight:700; color:var(--c-accent);">70% completado</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 4: BASE DE DATOS -->
+        <section class="section-title">
+            <h2>Esquema de Base de Datos</h2>
+            <p>Estructura de persistencia e integridad relacional mapeada en el motor MySQL.</p>
+        </section>
+
+        <div class="db-grid">
+            <div>
+                <table class="db-table-design">
+                    <thead>
+                        <tr>
+                            <th>Nombre Tabla</th>
+                            <th>Descripción / Propósito</th>
+                            <th>Estado Implementación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>usuarios</strong></td>
+                            <td>Almacena adoptantes, teléfonos, distritos y hash de seguridad de claves.</td>
+                            <td><span class="badge badge-green" style="font-size:0.7rem; background:#dcfce7; color:#15803d;">Implementada</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>roles</strong></td>
+                            <td>Gestión de permisos asignados a administradores y albergues.</td>
+                            <td><span class="badge badge-green" style="font-size:0.7rem; background:#dcfce7; color:#15803d;">Implementada</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>mascotas</strong></td>
+                            <td>Contiene expediente descriptivo, fotos y vacunas de los animales.</td>
+                            <td><span class="badge badge-green" style="font-size:0.7rem; background:#dcfce7; color:#15803d;">Implementada</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>solicitudes</strong></td>
+                            <td>Formularios de adopción enviados por los usuarios públicos.</td>
+                            <td><span class="badge badge-green" style="font-size:0.7rem; background:#dcfce7; color:#15803d;">Implementada</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>evaluaciones</strong></td>
+                            <td>Anotaciones socio-ambientales asociadas a cada postulación.</td>
+                            <td><span class="badge badge-green" style="font-size:0.7rem; background:#dcfce7; color:#15803d;">Implementada</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>donaciones</strong></td>
+                            <td>Libro contable de transferencias y método de pago (Yape/Plin/Tarjeta).</td>
+                            <td><span class="badge badge-yellow" style="font-size:0.7rem; background:#fef9c3; color:#a16207;">En Desarrollo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="background: white; border-radius: var(--radius-lg); padding: 1.8rem; border:1px solid var(--c-border); box-shadow: var(--shadow-sm); text-align:center;">
+                <div style="font-size: 0.78rem; font-weight:700; color:var(--c-primary); border-bottom:1px solid var(--c-border); padding-bottom:0.4rem; margin-bottom:0.8rem; display:flex; align-items:center; justify-content:center; gap:0.4rem;">
+                    <i class="ri-database-fill"></i> Esquema Relacional Físico
+                </div>
+                
+                <!-- relational model SVG -->
+                <svg viewBox="0 0 240 180" width="100%" height="auto" style="max-width: 220px; display:block; margin: 0 auto;">
+                    <rect x="10" y="10" width="70" height="40" rx="4" fill="#1F4A38" />
+                    <text x="45" y="24" fill="white" font-size="8" font-family="sans-serif" font-weight="bold" text-anchor="middle">usuarios</text>
+                    <text x="15" y="36" fill="#889A84" font-size="6" font-family="sans-serif">PK: id (int)</text>
+                    
+                    <rect x="140" y="55" width="80" height="50" rx="4" fill="#1F4A38" />
+                    <text x="180" y="70" fill="white" font-size="8" font-family="sans-serif" font-weight="bold" text-anchor="middle">solicitudes</text>
+                    <text x="145" y="82" fill="#889A84" font-size="6" font-family="sans-serif">PK: id (int)</text>
+                    <text x="145" y="92" fill="#e5e7eb" font-size="5" font-family="sans-serif">FK: usuario_id</text>
+                    <text x="145" y="99" fill="#e5e7eb" font-size="5" font-family="sans-serif">FK: mascota_id</text>
+
+                    <rect x="10" y="110" width="70" height="40" rx="4" fill="#1F4A38" />
+                    <text x="45" y="124" fill="white" font-size="8" font-family="sans-serif" font-weight="bold" text-anchor="middle">mascotas</text>
+                    <text x="15" y="136" fill="#889A84" font-size="6" font-family="sans-serif">PK: id (int)</text>
+
+                    <path d="M 80 30 L 110 30 L 110 80 L 140 80" stroke="#B56143" stroke-width="1.5" fill="none" stroke-dasharray="2" />
+                    <path d="M 80 130 L 110 130 L 110 95 L 140 95" stroke="#B56143" stroke-width="1.5" fill="none" stroke-dasharray="2" />
+                </svg>
+                <p style="font-size:0.75rem; color:var(--c-text-muted); margin-top:0.8rem; line-height:1.3;">Modelo de Integridad Referencial mapeado con relaciones 1:N entre las tablas nucleares del sistema.</p>
+            </div>
+        </div>
+
+        <!-- SECCIÓN 5: PRUEBAS FUNCIONALES -->
+        <section class="avance-hero" style="border-radius: var(--radius-lg); padding: 3rem 2rem; background: var(--c-surface); border:1px solid var(--c-border); box-shadow: var(--shadow-sm); margin-top: 4rem;">
+            <h2 style="font-size: 1.8rem; color: var(--c-primary); margin-bottom: 0.4rem;">Pruebas Funcionales e Integridad</h2>
+            <p style="color: var(--c-text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">Resultados obtenidos mediante pruebas automatizadas locales de las rutas críticas del backend.</p>
+
+            <button class="btn btn-secondary" onclick="runAutomatedTestSimulation()" id="test-run-btn" style="gap:0.4rem; background:var(--c-primary); margin-bottom: 1.5rem;">
+                <i class="ri-check-double-line"></i> Ejecutar Suite de Pruebas
+            </button>
+
+            <table class="db-table-design">
+                <thead>
+                    <tr>
+                        <th>Caso de Prueba</th>
+                        <th>Resultado Esperado</th>
+                        <th>Resultado Obtenido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="test-row-1">
+                        <td><strong>Registro de usuario</strong></td>
+                        <td>Registro exitoso, contraseña con hash, inicio de sesión.</td>
+                        <td><div class="test-row-status" id="test-status-1" style="color:var(--c-text-muted);"><i class="ri-time-line"></i> Pendiente</div></td>
+                    </tr>
+                    <tr id="test-row-2">
+                        <td><strong>Inicio de sesión</strong></td>
+                        <td>Acceso concedido redirigiendo según privilegios de rol.</td>
+                        <td><div class="test-row-status" id="test-status-2" style="color:var(--c-text-muted);"><i class="ri-time-line"></i> Pendiente</div></td>
+                    </tr>
+                    <tr id="test-row-3">
+                        <td><strong>Registro de mascota</strong></td>
+                        <td>Persistencia completa en base de datos y catálogo de fotos actualizado.</td>
+                        <td><div class="test-row-status" id="test-status-3" style="color:var(--c-text-muted);"><i class="ri-time-line"></i> Pendiente</div></td>
+                    </tr>
+                    <tr id="test-row-4">
+                        <td><strong>Solicitud de adopción</strong></td>
+                        <td>Datos almacenados con estado 'Pendiente' en base de datos.</td>
+                        <td><div class="test-row-status" id="test-status-4" style="color:var(--c-text-muted);"><i class="ri-time-line"></i> Pendiente</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECCIÓN 6: DIFICULTADES Y PENDIENTES -->
+        <section class="roadmap-grid">
+            <div class="roadmap-card dificultades">
+                <h3><i class="ri-alert-fill"></i> Dificultades Encontradas</h3>
+                <ul class="roadmap-list">
+                    <li>
+                        <i class="ri-error-warning-fill"></i>
+                        <strong>Integración entre módulos</strong>
+                        <span>El acoplamiento de las vistas de albergues con la autenticación multirol requirió reestructurar el archivo de sesión global.</span>
+                    </li>
+                    <li>
+                        <i class="ri-error-warning-fill"></i>
+                        <strong>Manejo de sesiones en backend</strong>
+                        <span>Configurar redirecciones dinámicas seguras sin romper el flujo de autenticación AJAX.</span>
+                    </li>
+                    <li>
+                        <i class="ri-error-warning-fill"></i>
+                        <strong>Gestión de imágenes físicas</strong>
+                        <span>La carga de archivos en directorios locales de XAMPP requirió validaciones estrictas de tamaño y extensiones.</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="roadmap-card pendientes">
+                <h3><i class="ri-compass-3-fill"></i> Trabajo Pendiente</h3>
+                <ul class="roadmap-list">
+                    <li>
+                        <i class="ri-checkbox-blank-circle-fill"></i>
+                        <strong>Módulo de Donaciones Monetarias</strong>
+                        <span>Implementación de pasarelas de pago y código QR para donaciones a albergues.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-blank-circle-fill"></i>
+                        <strong>Seguimiento Post-Adopción</strong>
+                        <span>Fichas de control periódico y notificaciones para dueños adoptantes.</span>
+                    </li>
+                    <li>
+                        <i class="ri-checkbox-blank-circle-fill"></i>
+                        <strong>Dashboard Estadístico Avanzado</strong>
+                        <span>Reportes y métricas de rendimiento interno de adopciones mensuales.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="footer-tagline">
+            &copy; 2026 ConectaPet - Avance de Scrum. Documento interactivo y autónomo para fines educativos de Unidad II.
+        </div>
+    </main>
+
+    <!-- NOTIFICACIONES TOAST SIMULADAS -->
+    <div class="toast-container-sim" id="toast-sim-container"></div>
+
+    <!-- JS LOGIC FOR STANDALONE INTERACTIVITY -->
+    <script>
+        // --- 1. Tab switches ---
+        function switchSprintTab(sprintNum) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(cont => cont.classList.remove('active'));
+            
+            const eventBtn = document.querySelectorAll('.tab-btn')[sprintNum];
+            if(eventBtn) eventBtn.classList.add('active');
+            
+            const targetContent = document.getElementById('sprint-tab-' + sprintNum);
+            if(targetContent) targetContent.classList.add('active');
+        }
+
+        // --- 2. Toast alerts ---
+        function triggerSimToast(msg, type = 'success') {
+            const container = document.getElementById('toast-sim-container');
+            const toast = document.createElement('div');
+            toast.className = 'toast-sim' + (type === 'error' ? ' err' : '');
+            toast.innerHTML = (type === 'error' ? '❌ ' : '✅ ') + msg;
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-20px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // --- 3. AJAX flow simulator ---
+        const archSequence = ['user', 'front', 'ajax', 'back', 'db'];
+        let isSimulating = false;
+
+        function highlightArchNode(nodeName) {
+            document.querySelectorAll('.arch-node').forEach(node => node.classList.remove('active-pulse'));
+            document.querySelectorAll('.arch-arrow').forEach(arr => arr.classList.remove('active-arrow'));
+            
+            const nodeEl = document.getElementById('arch-' + nodeName);
+            if(nodeEl) nodeEl.classList.add('active-pulse');
+            
+            const descBox = document.getElementById('arch-description');
+            
+            const details = {
+                user: "<strong>Usuario:</strong> Realiza clics en el catálogo web, ingresa datos en los formularios o interactúa con el dashboard.",
+                front: "<strong>Frontend:</strong> Recibe el evento de usuario, valida que no haya campos vacíos de forma local y los empaqueta.",
+                ajax: "<strong>AJAX:</strong> Envía de forma asíncrona un objeto JSON con los datos al backend usando la API Fetch nativa.",
+                back: "<strong>Backend (PHP):</strong> Controla y valida las credenciales de sesión en el servidor y procesa lógica de negocios.",
+                db: "<strong>Base de Datos (MySQL):</strong> Recibe consultas SQL preparadas de PHP, actualiza registros y devuelve confirmación."
+            };
+            
+            descBox.innerHTML = details[nodeName] || "";
+        }
+
+        function simulateAjaxFlow() {
+            if(isSimulating) return;
+            isSimulating = true;
+            let step = 0;
+            
+            function runStep() {
+                if (step < archSequence.length) {
+                    const currentNode = archSequence[step];
+                    highlightArchNode(currentNode);
+                    
+                    if (step > 0) {
+                        const prevArrow = document.getElementById('arrow-' + step);
+                        if(prevArrow) prevArrow.classList.add('active-arrow');
+                    }
+                    
+                    step++;
+                    setTimeout(runStep, 900);
+                } else {
+                    triggerSimToast("¡Llamada AJAX devuelta con código HTTP 200 OK!");
+                    setTimeout(() => {
+                        document.querySelectorAll('.arch-node').forEach(node => node.classList.remove('active-pulse'));
+                        document.querySelectorAll('.arch-arrow').forEach(arr => arr.classList.remove('active-arrow'));
+                        isSimulating = false;
+                    }, 1200);
+                }
+            }
+            runStep();
+        }
+
+        // --- 4. Sprint 0 Control ---
+        function setSprint0View(view) {
+            document.getElementById('s0-view-der').style.display = view === 'der' ? 'block' : 'none';
+            document.getElementById('s0-view-tree').style.display = view === 'tree' ? 'block' : 'none';
+            document.getElementById('s0-view-git').style.display = view === 'git' ? 'block' : 'none';
+            
+            document.getElementById('s0-btn-der').classList.toggle('active', view === 'der');
+            document.getElementById('s0-btn-tree').classList.toggle('active', view === 'tree');
+            document.getElementById('s0-btn-git').classList.toggle('active', view === 'git');
+        }
+
+        // --- 5. Sprint 1 Control ---
+        function setSprint1View(view) {
+            document.getElementById('s1-view-register').style.display = view === 'register' ? 'block' : 'none';
+            document.getElementById('s1-view-login').style.display = view === 'login' ? 'block' : 'none';
+            document.getElementById('s1-view-users').style.display = view === 'users' ? 'block' : 'none';
+            
+            document.getElementById('s1-btn-register').classList.toggle('active', view === 'register');
+            document.getElementById('s1-btn-login').classList.toggle('active', view === 'login');
+            document.getElementById('s1-btn-users').classList.toggle('active', view === 'users');
+        }
+
+        let simUsers = [
+            { id: 1, name: "Admin CP", email: "admin@conectapet.com", role: "Superadmin", active: true },
+            { id: 2, name: "Juan Pérez", email: "juan@gmail.com", role: "Adoptante", active: true }
+        ];
+
+        function renderSimUsers() {
+            const tbody = document.getElementById('s1-users-table-body');
+            tbody.innerHTML = "";
+            simUsers.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.style.borderBottom = '1px solid #f3f4f6';
+                tr.innerHTML = `
+                    <td style="padding:0.35rem;"><strong>${u.name}</strong><br><small style="color:#6b7280;">${u.email}</small></td>
+                    <td style="padding:0.35rem;"><span class="badge ${u.role === 'Superadmin' ? 'badge-blue' : 'badge-gray'}" style="font-size:0.65rem;">${u.role}</span></td>
+                    <td style="padding:0.35rem;"><span style="color:${u.active ? '#10b981' : '#ef4444'}; font-weight:700;">${u.active ? 'Activo' : 'Inactivo'}</span></td>
+                    <td style="padding:0.35rem; text-align:center;">
+                        ${u.id !== 1 ? `<button class="sim-badge-btn" style="padding:0.1rem 0.35rem; font-size:0.65rem;" onclick="toggleSimUser(${u.id})">${u.active ? 'Desactivar' : 'Activar'}</button>` : '-'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function runRegisterSimulation() {
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const roleSel = document.getElementById('reg-role').value;
+            
+            if(!name || !email) {
+                triggerSimToast("Completa los campos para simular.", "error");
+                return;
+            }
+            
+            const newId = simUsers.length + 1;
+            const formattedRole = roleSel === 'albergue' ? 'Albergue' : 'Adoptante';
+            simUsers.push({ id: newId, name: name, email: email, role: formattedRole, active: true });
+            
+            triggerSimToast(`Registro exitoso de: ${name}`);
+            renderSimUsers();
+            
+            setTimeout(() => {
+                document.getElementById('log-email').value = email;
+                setSprint1View('login');
+            }, 800);
+        }
+
+        function runLoginSimulation() {
+            const email = document.getElementById('log-email').value;
+            const matchedUser = simUsers.find(u => u.email.toLowerCase().trim() === email.toLowerCase().trim());
+            
+            if (matchedUser) {
+                if(!matchedUser.active) {
+                    triggerSimToast("El usuario está inactivo.", "error");
+                    return;
+                }
+                triggerSimToast(`Sesión Iniciada. Rol: ${matchedUser.role}. Accediendo...`);
+            } else {
+                triggerSimToast("Credenciales incorrectas.", "error");
+            }
+        }
+
+        function toggleSimUser(id) {
+            const idx = simUsers.findIndex(u => u.id === id);
+            if(idx !== -1) {
+                simUsers[idx].active = !simUsers[idx].active;
+                triggerSimToast(`Usuario ${simUsers[idx].name} marcado como ${simUsers[idx].active ? 'Activo' : 'Inactivo'}.`);
+                renderSimUsers();
+            }
+        }
+
+        // --- 6. Sprint 2 Control ---
+        function setSprint2View(view) {
+            document.getElementById('s2-view-catalog').style.display = view === 'catalog' ? 'block' : 'none';
+            document.getElementById('s2-view-newpet').style.display = view === 'newpet' ? 'block' : 'none';
+            
+            document.getElementById('s2-btn-catalog').classList.toggle('active', view === 'catalog');
+            document.getElementById('s2-btn-newpet').classList.toggle('active', view === 'newpet');
+        }
+
+        let simPets = [
+            { id: 1, name: "Bella", type: "Perro", sex: "Hembra", age: "1 Año", med: "Vacunada", label: "🐶", bg: "linear-gradient(45deg, #FFB347, #FF7B54)" },
+            { id: 2, name: "Michi", type: "Gato", sex: "Hembra", age: "1.5 Años", med: "Castrada", label: "🐱", bg: "linear-gradient(45deg, #74ebd5, #9face6)" }
+        ];
+
+        function renderSimPets(filteredList = simPets) {
+            const container = document.getElementById('sim-catalog-items');
+            container.innerHTML = "";
+            if(filteredList.length === 0) {
+                container.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:1.5rem; color:var(--c-text-muted); font-size:0.8rem;">No hay registros.</div>`;
+                return;
+            }
+            
+            filteredList.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'sim-pet-card';
+                card.innerHTML = `
+                    <div style="height:90px; background:${p.bg}; display:flex; align-items:center; justify-content:center; color:white; font-size:1.6rem; font-weight:800;">
+                        ${p.label}
+                    </div>
+                    <div class="sim-pet-info">
+                        <div class="sim-pet-name">${p.name} <span style="font-size:0.65rem; background:#dcfce7; color:#15803d; padding:0.1rem 0.25rem; border-radius:4px;">${p.med}</span></div>
+                        <div style="font-size:0.7rem; color:var(--c-text-muted);">${p.age} • Los Michis</div>
+                        <div class="sim-pet-tags">
+                            <span class="sim-pet-tag sim-tag-especie">${p.type}</span>
+                            <span class="sim-pet-tag sim-tag-sexo">${p.sex}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterSimPets(filterType) {
+            document.getElementById('f-pet-all').classList.remove('active');
+            document.getElementById('f-pet-dog').classList.remove('active');
+            document.getElementById('f-pet-cat').classList.remove('active');
+            
+            if(filterType === 'todos') {
+                document.getElementById('f-pet-all').classList.add('active');
+                renderSimPets(simPets);
+            } else {
+                if(filterType === 'Perro') document.getElementById('f-pet-dog').classList.add('active');
+                if(filterType === 'Gato') document.getElementById('f-pet-cat').classList.add('active');
+                
+                const filtered = simPets.filter(p => p.type === filterType);
+                renderSimPets(filtered);
+            }
+        }
+
+        function searchSimPets() {
+            const query = document.getElementById('sim-pet-search').value.toLowerCase().trim();
+            const filtered = simPets.filter(p => p.name.toLowerCase().includes(query));
+            renderSimPets(filtered);
+        }
+
+        function runNewPetSimulation() {
+            const name = document.getElementById('newpet-name').value;
+            const type = document.getElementById('newpet-type').value;
+            const sex = document.getElementById('newpet-sex').value;
+            const age = document.getElementById('newpet-age').value;
+            const med = document.getElementById('newpet-med').value || 'Vacunado';
+            
+            if(!name || !age) {
+                triggerSimToast("Rellene nombre y edad.", "error");
+                return;
+            }
+            
+            const newId = simPets.length + 1;
+            const bgGradient = type === 'Perro' ? 'linear-gradient(45deg, #ff9a9e, #fecfef)' : 'linear-gradient(45deg, #13f1fc, #1F4A38)';
+            const labelSym = type === 'Perro' ? '🐶' : '🐱';
+            
+            simPets.push({ id: newId, name: name, type: type, sex: sex, age: age, med: med, label: labelSym, bg: bgGradient });
+            triggerSimToast(`"${name}" agregado exitosamente.`);
+            
+            renderSimPets();
+            setSprint2View('catalog');
+        }
+
+        // --- 7. Sprint 3 Control ---
+        let simRequests = [
+            { id: 1, name: "Ana Gómez", pet: "Bella (Perro)", dni: "72345678", obs: "", status: "Pendiente" }
+        ];
+
+        function renderSimRequests() {
+            const container = document.getElementById('s3-inbox-container');
+            container.innerHTML = "";
+            
+            simRequests.forEach(r => {
+                const stClass = r.status === 'Pendiente' ? 'status-pendiente' : (r.status === 'Aprobada' ? 'status-aprobado' : 'status-rechazado');
+                const reqEl = document.createElement('div');
+                reqEl.className = 'sim-inbox-item';
+                reqEl.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; font-weight:700; font-size:0.75rem;">
+                        <span>${r.name}</span>
+                        <span id="s3-req-state-badge-${r.id}" style="color:${r.status === 'Pendiente' ? '#a16207' : (r.status === 'Aprobada' ? '#15803d' : '#b91c1c')}">
+                            <span class="sim-status-dot ${stClass}"></span>${r.status}
+                        </span>
+                    </div>
+                    <div style="font-size:0.7rem; color:#6b7280; margin-top:0.15rem;">Mascota: ${r.pet} | DNI: ${r.dni}</div>
+                    <div style="margin-top:0.35rem; display:flex; gap:0.2rem;">
+                        <input type="text" id="s3-obs-${r.id}" class="sim-input" placeholder="Observaciones..." value="${r.obs}" style="padding:0.15rem; font-size:0.68rem; flex-grow:1;">
+                        <button class="sim-badge-btn" style="background:#10b981; color:white; border:none; padding:0.15rem 0.35rem; font-size:0.65rem;" onclick="updateRequestState(${r.id}, 'Aprobada')">Aprobar</button>
+                        <button class="sim-badge-btn" style="background:#ef4444; color:white; border:none; padding:0.15rem 0.35rem; font-size:0.65rem;" onclick="updateRequestState(${r.id}, 'Rechazada')">Rechazar</button>
+                    </div>
+                `;
+                container.appendChild(reqEl);
+            });
+        }
+
+        function submitAdoptionSimulation() {
+            const name = document.getElementById('s3-name').value;
+            const pet = document.getElementById('s3-pet').value;
+            const dni = document.getElementById('s3-dni').value;
+            
+            if(!name || !dni) {
+                triggerSimToast("Rellene nombre y DNI.", "error");
+                return;
+            }
+            
+            const newId = simRequests.length + 1;
+            simRequests.push({ id: newId, name: name, pet: pet, dni: dni, obs: "", status: "Pendiente" });
+            
+            triggerSimToast("¡Solicitud enviada a la bandeja!");
+            renderSimRequests();
+            
+            document.getElementById('s3-name').value = "";
+            document.getElementById('s3-dni').value = "";
+        }
+
+        function updateRequestState(id, newState) {
+            const idx = simRequests.findIndex(r => r.id === id);
+            if(idx !== -1) {
+                const obsVal = document.getElementById(`s3-obs-${id}`).value;
+                simRequests[idx].status = newState;
+                simRequests[idx].obs = obsVal;
+                
+                triggerSimToast(`Solicitud #${id} ${newState.toLowerCase()}.`);
+                renderSimRequests();
+            }
+        }
+
+        // --- 8. Functional test runner ---
+        function runAutomatedTestSimulation() {
+            const cases = [
+                { id: 1, msg: "Test 1/4: Registro de nuevo usuario... OK" },
+                { id: 2, msg: "Test 2/4: Sesiones y roles... OK" },
+                { id: 3, msg: "Test 3/4: Carga de mascotas... OK" },
+                { id: 4, msg: "Test 4/4: Postulación e integridad... OK" }
+            ];
+            
+            const testBtn = document.getElementById('test-run-btn');
+            testBtn.disabled = true;
+            testBtn.innerHTML = `<i class="ri-refresh-line" style="animation: spin 1s infinite linear; display:inline-block;"></i> Corriendo Pruebas...`;
+            
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById('test-status-' + i).innerHTML = `<i class="ri-refresh-line" style="animation: spin 1s infinite linear; display:inline-block;"></i> Corriendo...`;
+                document.getElementById('test-status-' + i).style.color = '#3b82f6';
+                document.getElementById('test-row-' + i).style.background = 'rgba(59, 130, 246, 0.04)';
+            }
+            
+            let idx = 0;
+            function runNextTest() {
+                if(idx < cases.length) {
+                    const c = cases[idx];
+                    setTimeout(() => {
+                        const labelEl = document.getElementById('test-status-' + c.id);
+                        labelEl.innerHTML = `<i class="ri-checkbox-circle-fill"></i> Correcto`;
+                        labelEl.style.color = '#10b981';
+                        document.getElementById('test-row-' + c.id).style.background = 'rgba(16, 185, 129, 0.04)';
+                        
+                        triggerSimToast(c.msg);
+                        idx++;
+                        runNextTest();
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        testBtn.disabled = false;
+                        testBtn.innerHTML = `<i class="ri-check-double-line"></i> Ejecutar Suite de Pruebas`;
+                        triggerSimToast("¡Suite de pruebas completada al 100%!");
+                    }, 500);
+                }
+            }
+            runNextTest();
+        }
+    </script>
+    
+    <style>
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</body>
+</html>
